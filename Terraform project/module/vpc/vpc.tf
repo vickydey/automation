@@ -177,6 +177,10 @@ output "private_subnet2_id" {
   value       = aws_subnet.levelup_vpc_private_subnet_2.id
 }
 
+output "private_subnet3_id" {
+  description = "Subnet ID"
+  value       = aws_subnet.levelup_vpc_private_subnet_3.id
+}
 output "public_subnet1_id" {
   description = "Subnet ID"
   value       = aws_subnet.levelup_vpc_public_subnet_1.id
@@ -185,4 +189,9 @@ output "public_subnet1_id" {
 output "public_subnet2_id" {
   description = "Subnet ID"
   value       = aws_subnet.levelup_vpc_private_subnet_2.id
+}
+
+output "public_subnet3_id" {
+  description = "Subnet ID"
+  value       = aws_subnet.levelup_vpc_private_subnet_3.id
 }
