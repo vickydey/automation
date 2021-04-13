@@ -36,6 +36,17 @@ resource "aws_subnet" "levelup_vpc_public_subnet_2" {
   }
 }
 
+#public Subnet 3
+resource "aws_subnet" "levelup_vpc_public_subnet_3" {
+  vpc_id     = aws_vpc.levelup_vpc.id
+  cidr_block = var.LEVELUP_VPC_PUBLIC_SUBNET3_CIDR_BLOCK
+  availability_zone = data.aws_availability_zones.available.names[2]
+  map_public_ip_on_launch = "true"
+  tags = {
+    Name = "${var.ENVIRONMENT}-levelup-vpc-public-subnet-3"
+  }
+}
+
 # private subnet 1
 resource "aws_subnet" "levelup_vpc_private_subnet_1" {
   vpc_id     = aws_vpc.levelup_vpc.id
@@ -52,6 +63,16 @@ resource "aws_subnet" "levelup_vpc_private_subnet_2" {
   availability_zone = data.aws_availability_zones.available.names[1]
   tags = {
     Name = "${var.ENVIRONMENT}-levelup-vpc-private-subnet-2"
+  }
+}
+
+# private subnet 3
+resource "aws_subnet" "levelup_vpc_private_subnet_3" {
+  vpc_id     = aws_vpc.levelup_vpc.id
+  cidr_block = var.LEVELUP_VPC_PRIVATE_SUBNET3_CIDR_BLOCK
+  availability_zone = data.aws_availability_zones.available.names[2]
+  tags = {
+    Name = "${var.ENVIRONMENT}-levelup-vpc-private-subnet-3"
   }
 }
 
@@ -116,6 +137,11 @@ resource "aws_route_table_association" "to_public_subnet2" {
   route_table_id = aws_route_table.public.id
 }
 
+resource "aws_route_table_association" "to_public_subnet3" {
+  subnet_id      = aws_subnet.levelup_vpc_public_subnet_3.id
+  route_table_id = aws_route_table.public.id
+}
+
 # Route table association with private subnets
 resource "aws_route_table_association" "to_private_subnet1" {
   subnet_id      = aws_subnet.levelup_vpc_private_subnet_1.id
@@ -123,6 +149,11 @@ resource "aws_route_table_association" "to_private_subnet1" {
 }
 resource "aws_route_table_association" "to_private_subnet2" {
   subnet_id      = aws_subnet.levelup_vpc_private_subnet_2.id
+  route_table_id = aws_route_table.private.id
+}
+
+resource "aws_route_table_association" "to_private_subnet3" {
+  subnet_id      = aws_subnet.levelup_vpc_private_subnet_3.id
   route_table_id = aws_route_table.private.id
 }
 

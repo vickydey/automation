@@ -12,6 +12,7 @@ module "levelup-rds" {
     AWS_REGION  = var.AWS_REGION
     vpc_private_subnet1 = var.vpc_private_subnet1
     vpc_private_subnet2 = var.vpc_private_subnet2
+    vpc_private_subnet3 = var.vpc_private_subnet3
     vpc_id = var.vpc_id
 }
 
@@ -85,7 +86,7 @@ resource "aws_autoscaling_group" "levelup_webserver" {
   desired_capacity          = 1
   force_delete              = true
   launch_configuration      = aws_launch_configuration.launch_config_webserver.name
-  vpc_zone_identifier       = ["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}"]
+  vpc_zone_identifier       = ["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}","${var.vpc_public_subnet3}"]
   target_group_arns         = [aws_lb_target_group.load-balancer-target-group.arn]
 }
 
@@ -95,7 +96,7 @@ resource "aws_lb" "levelup-load-balancer" {
   internal           = false
   load_balancer_type = "application"
   security_groups    = [aws_security_group.levelup_webservers_alb.id]
-  subnets            = ["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}"]
+  subnets            = ["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}","${var.vpc_public_subnet3}"]
 
 }
 

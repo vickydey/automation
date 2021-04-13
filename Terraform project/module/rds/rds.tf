@@ -15,6 +15,7 @@ resource "aws_db_subnet_group" "levelup-rds-subnet-group" {
     subnet_ids    = [
       "${var.vpc_private_subnet1}",
       "${var.vpc_private_subnet2}",
+      "${var.vpc_private_subnet3}",
     ]
     tags = {
         Name         = "${var.ENVIRONMENT}_levelup_db_subnet"

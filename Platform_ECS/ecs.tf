@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "${var.region}"
+  region = var.region
 }
 
 terraform {
@@ -10,9 +10,9 @@ data "terraform_remote_state" "infrastructure" {
   backend = "s3"
 
   config = {
-    region = "${var.region}"
-    bucket = "${var.remote_state_bucket}"
-    key    = "${var.remote_state_key}"
+    region = var.region
+    bucket = var.remote_state_bucket
+    key    = var.remote_state_key
   }
 }
 

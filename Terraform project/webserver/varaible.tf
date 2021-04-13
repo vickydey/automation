@@ -45,6 +45,12 @@ variable "vpc_private_subnet2" {
   default     = ""
 }
 
+variable "vpc_private_subnet3" {
+  description = "AWS VPC Environment Name"
+  type        = string
+  default     = ""
+}
+
 variable "vpc_id" {
   description = "AWS VPC Environment Name"
   type        = string
@@ -59,6 +65,12 @@ variable "vpc_public_subnet1" {
 }
 
 variable "vpc_public_subnet2" {
+  description = "AWS VPC Environment Name"
+  type        = string
+  default     = ""
+}
+
+variable "vpc_public_subnet3" {
   description = "AWS VPC Environment Name"
   type        = string
   default     = ""
