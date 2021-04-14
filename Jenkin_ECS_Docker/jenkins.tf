@@ -1,5 +1,5 @@
 resource "aws_instance" "jenkins-instance" {
-  ami           = var.AMIS[var.AWS_REGION]
+  ami           = var.ECS_AMIS[var.AWS_REGION]
   instance_type = "t2.small"
 
   # the VPC subnet
