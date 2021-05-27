@@ -79,7 +79,7 @@ resource "aws_launch_configuration" "launch_config_webserver" {
 
 resource "aws_autoscaling_group" "levelup_webserver" {
   name                      = "levelup_WebServers"
-  max_size                  = 2
+  max_size                  = 4
   min_size                  = 1
   health_check_grace_period = 30
   health_check_type         = "EC2"
