@@ -69,13 +69,13 @@ resource "aws_instance" "my-instance" {
   instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
-  subnet_id = module.levelup-vpc.vpc_public_subnet1
+  subnet_id = module.levelup-vpc.public_subnet1_id
   availability_zone = "${var.AWS_REGION}a"
 
 
   #["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}","${var.vpc_public_subnet3}"]
   # the security group
-  vpc_security_group_ids = ["${aws_security_group.allow-ssh.id}"]
+  vpc_security_group_ids = [aws_security_group.allow-ssh.id]
 
   # the public SSH key
   key_name = aws_key_pair.levelup_key.key_name
@@ -124,13 +124,13 @@ resource "aws_instance" "my-instance1" {
   instance_type = var.INSTANCE_TYPE
 
   # the VPC subnet
-  subnet_id = module.levelup-vpc.vpc_private_subnet1
+  subnet_id = module.levelup-vpc.private_subnet1_id
   availability_zone = "${var.AWS_REGION}a"
 
 
   #["${var.vpc_public_subnet1}", "${var.vpc_public_subnet2}","${var.vpc_public_subnet3}"]
   # the security group
-  vpc_security_group_ids = ["${aws_security_group.allow-PS.id}"]
+  vpc_security_group_ids = [aws_security_group.allow-PS.id]
 
   # the public SSH key
   key_name = aws_key_pair.levelup_key.key_name
